@@ -1,0 +1,62 @@
+.container {
+    padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  
+  .nav_component {
+    background-color: #a3d921;
+    color: #fff;
+    margin: 6px 5px 6px 5px;
+    padding: 0px 28px;
+    border-radius: 8px;
+    transition: all 500ms ease;
+  }
+  
+  .text {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffff;
+    transition: all 500ms ease;
+  }
+  
+  .text:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .icon {
+    justify-content: flex-start;
+    margin-right: 3.5vh;
+  }
+  
+  .icon img {
+    width: 10vh;
+    height: 8.6vh;
+  }
+  
+  .selected-temperament {
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }  
+
+  .row {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .column {
+    display: grid;
+    gap: 10px;
+  }
+
+link {  text-decoration: none;
+  color: inherit;}

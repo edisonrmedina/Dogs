@@ -1,0 +1,57 @@
+.card-detail {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Agrega esta línea para centrar horizontalmente */
+    display: flex; /* Agrega esta línea para habilitar flexbox */
+    justify-content: center; /* Agrega esta línea para centrar verticalmente */
+    align-items: center; /* Agrega esta línea para centrar verticalmente */
+    flex-direction: column; /* Agrega esta línea para apilar los elementos verticalmente */
+  }
+
+  .buttom-home {
+    margin: 10px auto;
+    justify-content: center;
+    display: flex;
+  }
+  
+.parent-card-detail {
+    padding: 20px;
+}
+  .card-detail h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .card-detail img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .card-detail h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .card-detail p {
+    margin-bottom: 4px;
+  }
+
+
+  
+  .card-detail .temperament-button {
+    display: inline-block;
+    background-color: #a3d921;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
