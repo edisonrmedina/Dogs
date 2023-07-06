@@ -1,5 +1,5 @@
-import { ascendOrder, descendOrder } from "../../OrderingFuncionts/orderFunctions";
-import { GET_ALL_DOGS, CLEAR_DOGS, GET_ALL_TEMPERAMENTS, FIND_BY_NAME, FIND_BY_TEMPERAMENT, ORDER_BY_ALF, DETAIL_DOG } from "../action";
+import { ascendOrder, descendOrder, orderMax, orderMin } from "../../OrderingFuncionts/orderFunctions";
+import { GET_ALL_DOGS, CLEAR_DOGS, GET_ALL_TEMPERAMENTS, FIND_BY_NAME, FIND_BY_TEMPERAMENT, ORDER_BY_ALF, DETAIL_DOG, ORDER_BY_WEIGHT, CLEAR_DETAIL } from "../action";
 
 const initialState = {
     dogs: [],
@@ -22,6 +22,11 @@ const rootReducer = (state = initialState, action) => {
                   ...state,
                   dogs :action.payload
             }
+        case CLEAR_DETAIL:
+            return {
+                ...state,
+                details :action.payload
+          }
         case FIND_BY_NAME:
                 return {
                   ...state,
@@ -42,15 +47,23 @@ const rootReducer = (state = initialState, action) => {
             let allDogs = [...state.dogs];
             if(action.payload === false){orderArray = descendOrder(allDogs)}
             if(action.payload === true){orderArray = ascendOrder(allDogs)}
-            return {
+            return{
                 ...state ,
                 dogs : orderArray
             }
         case DETAIL_DOG:
-        debugger;    
-        return {
+            return{
                 ...state,
                 details : action.payload
+            }
+        case ORDER_BY_WEIGHT:
+            let orderArrayByWeight;
+            let allDogsCopy = [...state.dogs];
+            if(action.payload === false){orderArrayByWeight = orderMax(allDogsCopy)}
+            if(action.payload === true){orderArrayByWeight = orderMin(allDogsCopy)}
+            return {
+                ...state,
+                dogs: orderArrayByWeight
             }
         default:
             return initialState;

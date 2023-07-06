@@ -12,8 +12,7 @@ function App() {
       <Route path={'/home'} component={Home}/>
       <Route path={'/detail/:id'} component={DetailDog}/>
       <Route path={'/form'} component={DogsCreateComponent}/>
-      {/* 
-      <Route path={'/detail/:id'} component={RecipeDetail}/>  */}
+      
     </BrowserRouter>
     // <div className="App">
     //   <LandingPage/>

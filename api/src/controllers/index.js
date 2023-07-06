@@ -3,7 +3,8 @@ const { findAllDogs, findDogById,findTemperaments } = require("./dogs.api.db");
 const { Dogs, Temperaments } = require("../db");
 
 const allDogs = (req, res) => {
-    findAllDogs().then((e) => {
+  const {origin} = req.query
+    findAllDogs(origin).then((e) => {
       return res.status(200).json(e);
     });
 };
@@ -41,7 +42,7 @@ const dogsByName = async (req,res) => {
         e.name.toLowerCase().includes(name.toLowerCase())
       );
       res.json(
-        allDogsFinded.length ? allDogsFinded : "I did not find the a dog"
+        allDogsFinded.length ? allDogsFinded : []
       );
     }
   } catch (error) {
@@ -65,7 +66,7 @@ const dogsByTemperaments = async (req, res) => {
       res.json(
         dogsByTemperament.length
           ? dogsByTemperament
-          : "No se encontraron perros con ese temperamento"
+          : []
       );
     }
   } catch (error) {
@@ -76,6 +77,7 @@ const dogsByTemperaments = async (req, res) => {
 
 const addDog = async (req,res) => { 
     var { 
+      id,
       name,
       height,
       weight,
@@ -96,6 +98,7 @@ const addDog = async (req,res) => {
         // takes that data for the new dog  
         console.log(image);
         const createDog = await Dogs.create({
+            id,
             name,
             height,
             weight,

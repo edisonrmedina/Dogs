@@ -18,3 +18,27 @@ export const ascendOrder = (array) => {
     var ascendeOrder = array.sort(SortArrayZA);
     return ascendeOrder;
 }
+
+export const orderMin = (array) => {
+    let min = array.sort((a, b) => {
+      // Extraer el primer valor numérico de la cadena "weight"
+      const weightA = Number(a.weight.split(" ")[0]);
+      const weightB = Number(b.weight.split(" ")[0]);
+  
+      return weightA - weightB;
+    });
+  
+    return min;
+  };
+  
+  export const orderMax = (array) => {
+    let max = array.sort((a, b) => {
+      // Extraer el primer valor numérico de la cadena "weight"
+      const weightA = Number(a.weight.split(" ")[0]);
+      const weightB = Number(b.weight.split(" ")[0]);
+  
+      return weightB - weightA ;
+    });
+  
+    return max;
+  };

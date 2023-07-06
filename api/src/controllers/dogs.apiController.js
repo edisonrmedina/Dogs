@@ -25,10 +25,12 @@ const findAllApiDogs = async () => {
 };
 
 const findDogsById = async (id) => {
+    console.log(id);
     try {
       const dogs = await findAllApiDogs();
+      console.log(dogs);
       const dogById = dogs.find(item => item.id == id);
-      return dogById || []; // Devuelve null si no se encuentra
+      return dogById; // Devuelve null si no se encuentra
     } catch (error) {
       console.log(error);
       throw error; // O maneja el error de otra manera

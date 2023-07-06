@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { dogDetail, getAllDogs } from '../../redux/action';
+import { clearDetail, dogDetail, getAllDogs } from '../../redux/action';
 import './DetailDog.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -9,10 +9,37 @@ const DetailDog = () => {
   const details = useSelector((state) => state.details);
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const [isLoading, setIsLoading] = useState(true);
+  
   useEffect(() => {
     dispatch(dogDetail(id));
+    return dispatch(clearDetail());
   }, [id]);
+
+  
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+    
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className='loader-container'>
+        <div className='loader'></div>
+      </div>
+    );
+  }
+
+  if (!details) {
+    return <p className='card-content-no-found'>Raza no encontrado</p>;
+  }
 
   return (
     <div className='parent-card-detail'>

@@ -4,14 +4,22 @@ const {
     findDbDogById
 } = require("./dogs.dbController");
 
-const findAllDogs = async () => {
-    
+const findAllDogs = async (origin) => {
     try {
       const apiDogs = await findAllApiDogs();
       const dbDogs = await findAllDbDogs() ;
-      console.log(dbDogs);
       const allDogs = apiDogs.concat(dbDogs);
-      return allDogs;
+      switch(origin) {
+        case "bd":
+          return dbDogs;
+        case "api":
+          return apiDogs;
+        case "all":
+            return allDogs;
+        default :
+          return allDogs;
+      }
+      
     } catch (e) {
       console.log(e);
       return [];
@@ -38,6 +46,7 @@ const findDogById = async (id) => {
 };
 
 const findTemperaments = async () => {
+  
   try {
     const temperaments = await findAlltemperaments();
     return temperaments

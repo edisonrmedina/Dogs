@@ -9,10 +9,11 @@
   .nav_component {
     background-color: #a3d921;
     color: #fff;
-    margin: 6px 5px 6px 5px;
-    padding: 0px 28px;
+    margin: 8px 6px 8px 6px;
+    padding:0px 20px;
     border-radius: 8px;
     transition: all 500ms ease;
+    box-shadow: 0 8px 10px #333;
   }
   
   .text {
