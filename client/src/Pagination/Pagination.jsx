@@ -9,6 +9,25 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => 
     onPageChange(pageNumber);
   };
 
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, startPage + 4);
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          className={`pagination-button ${currentPage === i ? 'active' : ''}`}
+          onClick={() => handleClick(i)}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pageNumbers;
+  };
+
   return (
     <div className="pagination">
       <button
@@ -18,6 +37,7 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => 
       >
         Prev
       </button>
+      {renderPageNumbers()}
       <button
         className="pagination-button"
         onClick={() => handleClick(currentPage + 1)}

@@ -6,9 +6,25 @@ export const FIND_BY_NAME = "FIND_BY_NAME";
 export const FIND_BY_TEMPERAMENT = "FIND_BY_TEMPERAMENT";
 export const ORDER_BY_ALF = "ORDER_BY_ALF";
 export const DETAIL_DOG = "DETAIL_DOG";
+export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
+export const CLEAR_DETAIL = "CLEAR_DETAIL";
 
-export const getAllDogs = () => async (dispatch) => {
-    const { data } = await axios.get("http://localhost:3001/dogs");
+export const getAllDogs = (origin = "") => async (dispatch) => {
+    let data;
+    switch(origin) {
+      case "...":
+        data = (await axios.get("http://localhost:3001/dogs?origin=all")).data;
+        break;
+      case "Api":
+        data = (await axios.get("http://localhost:3001/dogs?origin=api")).data;
+        break;
+      case "BD":
+        data = (await axios.get("http://localhost:3001/dogs?origin=bd")).data;
+        break;
+      default :  
+        data = (await axios.get("http://localhost:3001/dogs?origin=all")).data;
+        break;
+    }
     dispatch({
       type: GET_ALL_DOGS,
       payload: data
@@ -18,7 +34,6 @@ export const getAllDogs = () => async (dispatch) => {
 export const findByName = (name) => async (dispatch) => {
   
   const { data } = await axios.get(`http://localhost:3001/dog?name=${name}`);
-  console.log(data);
   dispatch({
     type: FIND_BY_NAME,
     payload: data
@@ -43,6 +58,13 @@ export const orderByName =  (boolean) =>{
   })
 };
 
+export const orderByMinMax =  (boolean) =>{
+  return ({
+    type : ORDER_BY_WEIGHT,
+    payload : boolean
+  })
+};
+
 export const clearDogs = () =>{   //!recordar borrarr y mirara odnde lo usas
   return ({
     type : CLEAR_DOGS,
@@ -61,7 +83,6 @@ export const getAllTemperaments = () => async (dispatch) => {
 }
 
 export const dogDetail = (id) => async (dispatch) =>{
-  debugger;
   const {data} = await axios.get(`http://localhost:3001/dogs/${id}`);
   dispatch({
     type : DETAIL_DOG ,
@@ -73,4 +94,12 @@ export const postDog =(dog) =>{
   return async () => {
    await axios.post("http://localhost:3001/dog", dog)
   };
+}
+
+
+export const clearDetail = () => { 
+  return ({
+    type : CLEAR_DETAIL,
+    payload : {}
+  })
 }

@@ -14,7 +14,10 @@ function DogsCreateComponent() {
   const [errors, setErrors] = useState({});
   const allTemperaments = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
-
+  const [successMessage, setSuccessMessage] = useState('');
+  const [showDiv, setShowDiv] = useState(true);
+  const [showBackgroundEffects, setShowBackgroundEffects] = useState(true);
+  const allDogs = useSelector((state) => state.dogs );
   useEffect(() => {
     setTimeout(() => {
       dispatch(getAllDogs());
@@ -30,7 +33,12 @@ function DogsCreateComponent() {
     setSelectedTemperaments(selectedOptions);
   };
 
-  const handleSubmit = (event) => {
+  const toggleDiv = () => {
+    setShowDiv(!showDiv);
+    setShowBackgroundEffects(!showDiv); // Cambia el estado de los efectos de fondo al cerrar
+  };
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const selectedOptions = Array.from(event.target.temperaments)
       .map((option, index) => option.selected ? index : -1)
@@ -46,8 +54,8 @@ function DogsCreateComponent() {
     if (!name.match(/^[a-zA-Z\s]+$/)) {
       errors.name = 'El nombre solo puede contener letras y espacios';
     }
-    if (!(image.length < 200 && image.length > 50)) {
-      errors.image = 'La URL de la imagen debe tener entre 50 y 200 caracteres';
+    if (!(image.length > 50)) {
+      errors.image = 'La URL de la imagen debe almenos 50 caracteres';
     }
     if (!isNumeric(lifespan)) {
       errors.lifespan = 'La esperanza de vida debe ser un número';
@@ -67,6 +75,7 @@ function DogsCreateComponent() {
     // Si no hay errores, enviar el formulario
     if (Object.keys(errors).length === 0) {
       const dog = {
+        id : allDogs.length + 1,
         name,
         height: height,
         weight: weight,
@@ -74,7 +83,15 @@ function DogsCreateComponent() {
         temperaments: selectedOptions,
         image,
       };
-      dispatch(postDog(dog));
+      
+      try {
+        await dispatch(postDog(dog));
+        setSuccessMessage('Raza creada de manera correcta');
+      }catch(error){
+        setSuccessMessage('Ocurrio un Error al crear la mascota');
+      }
+
+      
 
       // Restablecer los campos del formulario
       setName('');
@@ -88,6 +105,14 @@ function DogsCreateComponent() {
 
   return (
     <div className="form-container">
+      {successMessage && (
+        <div >
+          <div className={`pop-up-container ${showBackgroundEffects ? 'display' : ''}`} style={{ display: showDiv ? 'block' : 'none' }}>
+            <p>{successMessage}</p>
+            <button onClick={toggleDiv}>Cerrar</button>
+          </div>
+        </div>
+      )}
       <h1>Crea tu Raza</h1>
       <form onSubmit={handleSubmit}>
         <div className='row'>
@@ -108,7 +133,7 @@ function DogsCreateComponent() {
             id="height"
             value={height}
             onChange={(event) => setHeight(event.target.value)}
-          />
+          />CM
           
         </div>
         {errors.height && <p className="error">{errors.height}</p>}
@@ -119,12 +144,12 @@ function DogsCreateComponent() {
             id="weight"
             value={weight}
             onChange={(event) => setWeight(event.target.value)}
-          />
+          />KG
           
         </div>
         {errors.weight && <p className="error">{errors.weight}</p>}
         <div >
-          <label htmlFor="lifespan">Esperanza de vida:</label>
+          <label htmlFor="lifespan">Años de vida:</label>
           <input
             type="text"
             id="lifespan"
@@ -177,10 +202,10 @@ function DogsCreateComponent() {
         {errors.image && <p className="error">{errors.image}</p>}
         <div className='row'>
           <button type="submit">Enviar</button>
-          <button><Link to="/Home">Inicio</Link></button>
+          
         </div>
       </form>
-      
+      <button><Link to="/Home">Inicio</Link></button>
     </div>
   );
 }

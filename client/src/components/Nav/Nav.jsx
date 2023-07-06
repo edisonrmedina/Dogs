@@ -4,6 +4,7 @@ import "../Nav/Nav.css";
 import SearchBarComponent from "../FiltersComponents/SearchBarComponent";
 import TemperamentsComponents from "../FiltersComponents/TemperamentsComponent"
 import GramatacialOrderComponent from "../FiltersComponents/GramatacialOrderComponent";
+import WeigthOrderComponent from "../FiltersComponents/WeigthOrderComponent";
 const Nav = ({searchByName}) => {
   return (
     <div className="container">
@@ -17,14 +18,17 @@ const Nav = ({searchByName}) => {
           <p>Crear</p>
         </Link>
       </div>
-      <div className="nav_component">
+      <div >
         <SearchBarComponent/>
       </div>
-      <div className="nav_component">
+      <div >
         <TemperamentsComponents/>
       </div>
       <div className="nav_component">
         <GramatacialOrderComponent/>
+      </div>
+      <div className="nav_component">
+        <WeigthOrderComponent/>
       </div>
     </div>
   );

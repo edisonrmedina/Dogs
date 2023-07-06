@@ -27,13 +27,25 @@ const SearchBarComponent = () => {
   };
 
   return (
-    <input
+    <input className=''
       type="text"
       name="search"
       id="search"
+      placeholder='Busca tu raza'
+      alt='Busca tu raza'
       value={searchText}
       onChange={onChangeInput}
       onKeyPress={onKeyPress}
+      style={{
+        padding: '15px',
+        margin: '10px',
+        fontSize: '16px',
+        borderRadius: '5px',
+        border: '1px solid #ccc',
+        boxShadow: 'none',
+        outline: 'none',
+        width: '300px',
+      }}
     />
   );
 };
