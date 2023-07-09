@@ -9,6 +9,12 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
+router.use('/', (req,res) => { 
+    res.status(200).json({
+        message:"Bienvenidos a mi Backend"
+    })
+ })
 router.use('/', dogRoutes)
 router.use('/', temperamentsRoutes);
 module.exports = router;
