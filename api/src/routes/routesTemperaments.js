@@ -1,4 +1,3 @@
-const axios = require("axios")
 const app = require('express').Router()
 const {temperaments} = require('../controllers')
 

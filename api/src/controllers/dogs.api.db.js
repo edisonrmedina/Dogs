@@ -38,10 +38,10 @@ const findDogById = async (id) => {
       return dbDog;
     }
   
-    return null; // Devuelve null si no se encuentra el perro con el ID especificado en ninguna fuente
+    return null; 
   } catch (error) {
     console.log(error);
-    throw error; // O maneja el error de otra manera
+    throw error; 
   }
 };
 

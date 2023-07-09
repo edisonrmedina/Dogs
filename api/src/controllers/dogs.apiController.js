@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Temperaments}  = require('../db')
+
 const findAllApiDogs = async () => {
     try {
       const response = await axios.get('https://api.thedogapi.com/v1/breeds');
@@ -15,12 +16,11 @@ const findAllApiDogs = async () => {
           temperaments: temperament ? temperament.split(", ") : []
         };
       });
-      // Realizar las operaciones necesarias con los datos obtenidos
       
       return data;
     } catch (error) {
       console.log(error);
-      throw error; // O maneja el error de otra manera
+      throw error; 
     }
 };
 
@@ -30,10 +30,10 @@ const findDogsById = async (id) => {
       const dogs = await findAllApiDogs();
       console.log(dogs);
       const dogById = dogs.find(item => item.id == id);
-      return dogById; // Devuelve null si no se encuentra
+      return dogById; 
     } catch (error) {
       console.log(error);
-      throw error; // O maneja el error de otra manera
+      throw error; 
     }
 };
 
