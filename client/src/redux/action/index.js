@@ -13,16 +13,16 @@ export const getAllDogs = (origin = "") => async (dispatch) => {
     let data;
     switch(origin) {
       case "...":
-        data = (await axios.get("http://localhost:3001/dogs?origin=all")).data;
+        data = (await axios.get("dogs?origin=all")).data;
         break;
       case "Api":
-        data = (await axios.get("http://localhost:3001/dogs?origin=api")).data;
+        data = (await axios.get("dogs?origin=api")).data;
         break;
       case "BD":
-        data = (await axios.get("http://localhost:3001/dogs?origin=bd")).data;
+        data = (await axios.get("dogs?origin=bd")).data;
         break;
       default :  
-        data = (await axios.get("http://localhost:3001/dogs?origin=all")).data;
+        data = (await axios.get("dogs?origin=all")).data;
         break;
     }
     dispatch({
@@ -33,7 +33,7 @@ export const getAllDogs = (origin = "") => async (dispatch) => {
 
 export const findByName = (name) => async (dispatch) => {
   
-  const { data } = await axios.get(`http://localhost:3001/dog?name=${name}`);
+  const { data } = await axios.get(`dog?name=${name}`);
   dispatch({
     type: FIND_BY_NAME,
     payload: data
@@ -42,7 +42,7 @@ export const findByName = (name) => async (dispatch) => {
 
 export const findByTemperament = (temperament) => async (dispatch) => {
   
-  const { data } = await axios.get(`http://localhost:3001/dogTemperament?temperament=${temperament}`);
+  const { data } = await axios.get(`dogTemperament?temperament=${temperament}`);
   console.log(data);
   dispatch({
     type: FIND_BY_TEMPERAMENT,
@@ -73,7 +73,7 @@ export const clearDogs = () =>{   //!recordar borrarr y mirara odnde lo usas
 }
 
 export const getAllTemperaments = () => async (dispatch) => {
-  const { data } = await axios.get("http://localhost:3001/temperaments");
+  const { data } = await axios.get("temperaments");
   
   dispatch({
     type: GET_ALL_TEMPERAMENTS,
@@ -83,7 +83,7 @@ export const getAllTemperaments = () => async (dispatch) => {
 }
 
 export const dogDetail = (id) => async (dispatch) =>{
-  const {data} = await axios.get(`http://localhost:3001/dogs/${id}`);
+  const {data} = await axios.get(`dogs/${id}`);
   dispatch({
     type : DETAIL_DOG ,
     payload : data
@@ -92,7 +92,7 @@ export const dogDetail = (id) => async (dispatch) =>{
 
 export const postDog =(dog) =>{
   return async () => {
-   await axios.post("http://localhost:3001/dog", dog)
+   await axios.post("dog", dog)
   };
 }
 

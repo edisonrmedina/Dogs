@@ -39,7 +39,9 @@ const dogsByName = async (req,res) => {
     }else{
       const allDogs = await findAllDogs();
       let allDogsFinded = allDogs.filter((e) =>
-        e.name.toLowerCase().includes(name.toLowerCase())
+        {
+          return e.name.toLowerCase() == name.toLowerCase()
+        }
       );
       res.json(
         allDogsFinded.length ? allDogsFinded : []

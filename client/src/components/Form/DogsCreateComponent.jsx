@@ -202,7 +202,6 @@ function DogsCreateComponent() {
         {errors.image && <p className="error">{errors.image}</p>}
         <div className='row'>
           <button type="submit">Enviar</button>
-          
         </div>
       </form>
       <button><Link to="/Home">Inicio</Link></button>

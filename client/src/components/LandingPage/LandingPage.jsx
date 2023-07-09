@@ -14,7 +14,7 @@ export const LandingPage = () => {
             <h2>
               <span>Happy Dogs</span>
             </h2>
-            <p>Descubre el mundo de los perros y crea una experiencia personalizada basada en el temperamento de tu fiel compañero.</p>
+            <p>Descubre el mundo de las razas de perros y crea una experiencia personalizada basada en el temperamento de tu fiel compañero.</p>
             <Link to="/home">
             <div className="home_button">Ingresar</div>
             </Link>

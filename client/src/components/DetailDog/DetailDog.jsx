@@ -10,7 +10,7 @@ const DetailDog = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  
+  let mapTemp = {};
   useEffect(() => {
     dispatch(dogDetail(id));
     return dispatch(clearDetail());
@@ -28,7 +28,12 @@ const DetailDog = () => {
     };
     
   }, []);
-
+  debugger;
+  if(details.Temperaments) {
+     mapTemp = details.Temperaments.map((temperament) => temperament.name);
+  }else{
+     mapTemp = details.temperaments;
+  }
   if (isLoading) {
     return (
       <div className='loader-container'>
@@ -53,7 +58,7 @@ const DetailDog = () => {
           <p>Weight: {details?.weight}</p>
           <p>Lifespan: {details?.lifespan}</p>
           <div>
-            {details?.temperaments?.map((temperament, index) => (
+            {mapTemp?.map((temperament, index) => (
               <button key={index} className="temperament-button">{temperament}</button>
             ))}
           </div>

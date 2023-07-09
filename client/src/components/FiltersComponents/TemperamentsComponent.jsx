@@ -9,8 +9,6 @@ const TemperamentsComponents = () => {
 
     e.preventDefault();
     if (["Temperaments", "Api", "BD", "..."].includes(e.target.value)) {
-      //toca hacer validacion para que valide si estamos en el caso solo bd, o solo api
-      // por que estamos usando para buscar por nombre el metodo que se nos pidio implementar
       dispatch(getAllDogs(e.target.value));
     }else{
       dispatch(findByTemperament(e.target.value));
@@ -39,13 +37,13 @@ const TemperamentsComponents = () => {
       </select>
       <select  style = {selectStyles} onChange={onSubmitSelect}>
         <option value="Api" >
-          Api
+          API
         </option>
         <option value="BD" >
           BD
         </option>
         <option selected value="Temperaments" >
-          All Temperaments / All Dogs
+          API / BD
         </option>
       </select>
     </div>

@@ -3,7 +3,6 @@ import { GET_ALL_DOGS, CLEAR_DOGS, GET_ALL_TEMPERAMENTS, FIND_BY_NAME, FIND_BY_T
 
 const initialState = {
     dogs: [],
-    allDogs: [],
     temperaments: [],
     details: [],
 };
