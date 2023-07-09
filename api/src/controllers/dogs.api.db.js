@@ -9,6 +9,7 @@ const findAllDogs = async (origin) => {
       const apiDogs = await findAllApiDogs();
       const dbDogs = await findAllDbDogs() ;
       const allDogs = apiDogs.concat(dbDogs);
+      console.log(allDogs);
       switch(origin) {
         case "bd":
           return dbDogs;
